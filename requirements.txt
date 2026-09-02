@@ -1,0 +1,6 @@
+numpy
+cython
+
+# required at runtime by madmom (see README): it still imports pkg_resources,
+# which setuptools removed in 81. Must stay below that version.
+setuptools<81
