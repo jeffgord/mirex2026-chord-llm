@@ -1,5 +1,12 @@
 numpy
 cython
+torch>=1.4.0
+h5py>=2.9.0
+pydub>=0.23.1
+audioop-lts; python_version >= "3.13"
+joblib>=0.13.2
+librosa>=0.7.2
+pretty_midi>=0.2.9
 
 # required at runtime by madmom (see README): it still imports pkg_resources,
 # which setuptools removed in 81. Must stay below that version.
