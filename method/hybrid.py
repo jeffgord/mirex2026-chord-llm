@@ -11,7 +11,7 @@ def predict_key(audio_path: Path) -> Key:
 
     # Also, get Chord-LLM prediction
     chords = predict_chords(audio_path)
-    chord_llm_key = chord_llm_predict_key(chords)
+    chord_llm_key = chord_llm_predict_key(chords, audio_path)
 
     # Decision Logic
     if get_proportion_N(chords) >= 0.5:
