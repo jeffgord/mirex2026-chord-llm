@@ -1,6 +1,6 @@
 from pathlib import Path
 import madmom.features.key as madmom_key
-from utils import Key
+from .utils import Key
 
 proc = madmom_key.CNNKeyRecognitionProcessor()
 

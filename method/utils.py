@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 import re
-from typing import Literal, get_args
+from typing import Literal
 from music21 import key as m21key
 
 TONICS = ['C', 'Db', 'D', 'Eb', 'E', 'F', 'F#', 'G', 'Ab', 'A', 'Bb', 'B']
@@ -13,7 +13,7 @@ class Key:
     def __post_init__(self):
         if self.tonic not in TONICS:
             raise ValueError(f"Invalid tonic: {self.tonic}. Must be one of {TONICS}.")
-        if self.mode not in get_args(self.__annotations__['mode']):
+        if self.mode not in ("major", "minor"):
             raise ValueError(f"Invalid mode: {self.mode}. Must be 'major' or 'minor'.")
 
     def build(key_str: str) -> Key:
@@ -25,7 +25,7 @@ class Key:
         return Key(tonic, mode)
 
     def to_mirex_format(self) -> str:
-        return f"<tonic {self.tonic}>\t<mode {self.mode}>"
+        return f"{self.tonic}\t{self.mode}\n"
 
 def get_proportion_N(chords: str) -> float:
     entries = re.findall(r"([^\s,][^,]*?)\s+([\d.]+)s", chords)
