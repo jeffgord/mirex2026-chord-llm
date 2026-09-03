@@ -18,7 +18,7 @@ class Key:
 
     def build(key_str: str) -> Key:
         raw_tonic, raw_mode = key_str.split()
-        k = m21key.Key(raw_tonic, raw_mode)
+        k = m21key.Key(raw_tonic, raw_mode.lower())
         pc = k.tonic.pitchClass
         tonic = TONICS[pc]
         mode = k.mode.lower()

@@ -33,6 +33,26 @@ def _get_nets_and_hmm():
     return _nets, _hmm
 
 
+def _merge_consecutive(segments):
+    if not segments:
+        return []
+    merged = [segments[0]]
+    for start, end, chord in segments[1:]:
+        if chord == merged[-1][2]:
+            merged[-1] = (merged[-1][0], end, chord)
+        else:
+            merged.append((start, end, chord))
+    return merged
+
+
+def _format_chords(segments) -> str:
+    parts = []
+    for start, end, chord in segments:
+        duration = round(end - start, 1)
+        parts.append(f'{chord} {duration}s')
+    return ', '.join(parts)
+
+
 def predict_chords(audio_path: Path) -> str:
     nets, hmm = _get_nets_and_hmm()
 
@@ -46,5 +66,6 @@ def predict_chords(audio_path: Path) -> str:
     probs = [np.mean([p[i] for p in probs], axis=0) for i in range(len(probs[0]))]
 
     chordlab = hmm.decode_to_chordlab(entry, probs, False)
+    segments = _merge_consecutive(chordlab)
 
-    return ', '.join(f'{label} {end - start:.3f}s' for start, end, label in chordlab)
+    return _format_chords(segments)
