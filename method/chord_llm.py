@@ -34,11 +34,8 @@ def predict_key(chords: str, chroma: str) -> Key:
     max_retries = 3
     for attempt in range(max_retries):
         try:
-            response = client.models.generate_content(
-                model="gemini-3.1-flash-lite",
-                contents=contents,
-                config=config,
-            )
+            chat = client.chats.create(model="gemini-3.1-flash-lite", config=config)
+            response = chat.send_message(contents)
             response_json = json.loads(response.text)
             return Key.build(response_json["key"])
         except errors.APIError as e:
