@@ -37,4 +37,4 @@ def get_proportion_N(chords: str) -> float:
         total += dur
         if label == "N":
             n_total += dur
-    return (n_total / total) if total else None
+    return (n_total / total) if total else 1.0

@@ -66,6 +66,10 @@ class GeminiKeyEstimator:
                     time.sleep(30)
                     continue
                 raise
+            except (json.JSONDecodeError, KeyError, ValueError):
+                if attempt < max_retries - 1:
+                    continue
+                raise
 
 key_estimator = GeminiKeyEstimator()
 
