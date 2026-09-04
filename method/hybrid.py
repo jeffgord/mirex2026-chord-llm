@@ -3,6 +3,7 @@ from pathlib import Path
 from .allconv import predict_key as allconv_predict_key
 from .chord_recognizer.predict import predict_chords
 from .chord_llm import predict_key as chord_llm_predict_key
+from .chroma import get_chroma
 from .utils import Key, get_proportion_N
 
 def predict_key(audio_path: Path) -> Key:
@@ -11,7 +12,8 @@ def predict_key(audio_path: Path) -> Key:
 
     # Also, get Chord-LLM prediction
     chords = predict_chords(audio_path)
-    chord_llm_key = chord_llm_predict_key(chords, audio_path)
+    chroma = get_chroma(audio_path)
+    chord_llm_key = chord_llm_predict_key(chords, chroma)
 
     # Decision Logic
     if get_proportion_N(chords) >= 0.5:
