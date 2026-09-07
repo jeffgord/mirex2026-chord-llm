@@ -41,7 +41,7 @@ python run.py track01.wav track01.key
 ## Run details
 
 - **Threads/cores:** 3 (fixed, not configurable)
-- **Expected memory footprint:** ~1.0 GB of RAM per 60-second clip
+- **Expected memory footprint:** ~1.0 GB peak RSS for 60-second clips
 - **Expected runtime:** ~12s per 60-second clip
 - **Scratch disk space:** None
 
