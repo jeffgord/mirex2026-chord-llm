@@ -4,7 +4,7 @@ The chord-llm system estimates the key of a musical passage by running audio thr
 
 As such, chord-llm incorporates a few external components:
 - A chord recognizer from ISMIR 2019 available under MIT license [here](https://github.com/music-x-lab/ISMIR2019-Large-Vocabulary-Chord-Recognition) [1]
-- `Gemini 3.1 Flash Lite` through Google's `genai` API for the LLM call. Note that neither the audio itself nor detailed audio features are passed through the API. The LLM only processes the extracted chords, as well as chroma activations averaged across the whole passage (see `\method\chord-llm-prompt.txt`). This means Google would not be able to recover the original audio from a private evaluation set.
+- `Gemini 3.8 Flash` through Google's `genai` API for the LLM call. Note that neither the audio itself nor detailed audio features are passed through the API. The LLM only processes the extracted chords, as well as chroma activations averaged across the whole passage (see `\method\chord-llm-prompt.txt`). This means Google would not be able to recover the original audio from a private evaluation set.
 - For the fallback, we use the AllConv model [2] as implemented in `madmom` ([BSD-licensed](https://github.com/CPJKU/madmom?tab=License-1-ov-file)). The model weights are distributed under [CC BY-NC-SA 4.0](http://creativecommons.org/licenses/by-nc-sa/4.0/legalcode) for non-commercial use only.
 
 An informal writeup detailing the motivation behind this system along with preliminary results is available here: https://jeffgord.github.io/llm-key-detection/.
@@ -46,7 +46,7 @@ python run.py track01.wav track01.key
 - **Scratch disk space:** None
 
 
-> **Special Notices:** For the Gemini call, the system requires network access and a valid `GEMINI_API_KEY` (provided via `.env`). Also, CUDA GPU used automatically when available.
+> **Special Notices:** For the Gemini call, the system requires network access and a valid `GEMINI_API_KEY` (provided via `.env`). It is not recommended to run multiple versions of the system in parallel using the API key, as doing so will result in rate limiting errors.
 
 ## References
 
