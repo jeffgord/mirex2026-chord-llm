@@ -9,5 +9,5 @@ if __name__ == '__main__':
     parser.add_argument('output', type=Path, help='Output file for the predicted key')
     args = parser.parse_args()
 
-    key = predict_key(args.input)
+    key = predict_key(args.input.resolve())
     args.output.write_text(key.to_mirex_format())

@@ -11,7 +11,7 @@ An informal writeup detailing the motivation behind this system along with preli
 
 ## Setup
 
-For MIREX2026, the task organizers should first email Jeff (jeffrey.gordon@nyu.edu) for the `.env` file. This contains a Gemini API key, and should not be shared outside the competition. Copy the provided `.env` to the repo root after cloning.
+For MIREX2026, Jeff will provide a `.env` through the submission portal. If cloning from GitHub, the task organizers should first email Jeff (jeffrey.gordon@nyu.edu) for the `.env` file. Copy the provided `.env` to the repo root after cloning. Note that the `.env` contains a Gemini API key, and should not be shared outside the competition. 
 
 Next, setup the environment. Note that chord-llm is designed for [Python 3.14](https://www.python.org/downloads/release/python-3140/).
 
@@ -46,7 +46,7 @@ python run.py track01.wav track01.key
 - **Scratch disk space:** None
 
 
-> **Special Notices:** For the Gemini call, the system requires network access and a valid `GEMINI_API_KEY` (provided via `.env`). It is not recommended to run multiple versions of the system in parallel using the API key, as doing so will result in rate limiting errors.
+> **Special Notices:** For the Gemini call, the system requires network access and a valid `GEMINI_API_KEY` (provided via `.env`). It is not recommended to run multiple versions of the system in parallel using the same API key, as doing so will result in rate limiting errors.
 
 ## References
 
